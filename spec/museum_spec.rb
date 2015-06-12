@@ -63,4 +63,16 @@ describe(Museum) do
       expect(Museum.all()).to(eq([test_museum]))
     end
   end
+
+  describe('#artworks') do
+    it('returns all of the artwork at a particular museum') do
+      test_museum = Museum.new({:name => 'Portland museum', :id => nil})
+      test_museum.save()
+      test_artwork = Artwork.new({:name => 'Painting', :museum_id => nil})
+      test_artwork.save()
+      test_artwork2 = Artwork.new({:name => 'Sculpture', :museum_id => nil})
+      test_artwork2.save()
+      expect(test_museum.artworks()).to(eq([test_artwork, test_artwork2]))
+    end
+  end
 end

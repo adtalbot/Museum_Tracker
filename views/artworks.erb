@@ -1,0 +1,15 @@
+<h1>All Artwork</h1>
+
+<% @artworks.each() do |artwork| %>
+  <ul>
+    <li><a href='/artworks/<%= artwork.id() %>'><%= artwork.name() %></a></li>
+  </ul>
+<% end %>
+
+<p>Add Artwork</p>
+
+<form action='/artworks' method='post'>
+  <div class='form-group'>
+    <input name='name' id='name' type='text' placeholder='Enter artwork'>
+  </div>
+</form>
