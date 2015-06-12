@@ -17,4 +17,20 @@ describe(Artwork) do
       expect(Artwork.all()).to(eq([]))
     end
   end
+
+  describe('#save') do
+    it('adds artwork to the database') do
+      test_artwork = Artwork.new({:name => 'Portland Musuem', :id => nil})
+      test_artwork.save()
+      expect(Artwork.all()).to(eq([test_artwork]))
+    end
+  end
+
+  describe('#==') do
+    it('recognizes that two artworks with the same name and ID are equal') do
+      test_artwork = Artwork.new({:name => 'Painting', :id => nil})
+      test_artwork2 = Artwork.new({:name => 'Painting', :id => nil})
+      expect(test_artwork).to(eq(test_artwork2))
+    end
+  end
 end

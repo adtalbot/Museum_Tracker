@@ -16,4 +16,13 @@ class Artwork
     end
     artworks
   end
+
+  define_method(:save) do
+    result = DB.exec("INSERT INTO artworks (name) VALUES ('#{@name}') RETURNING id;")
+    @id = result.first.fetch('id').to_i()
+  end
+
+  define_method(:==) do |another_artwork|
+    self.name().==(another_artwork.name()).&(self.id().==(another_artwork.id()))
+  end
 end
