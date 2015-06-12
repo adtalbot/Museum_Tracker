@@ -43,4 +43,13 @@ describe(Artwork) do
       expect(Artwork.find(test_artwork.id())).to(eq(test_artwork))
     end
   end
+
+  describe('#update') do
+    it('updates artwork in the database') do
+      test_artwork = Artwork.new({:name => 'Painting', :id => nil})
+      test_artwork.save()
+      test_artwork.update({:name => 'Sculpture'})
+      expect(test_artwork.name()).to(eq('Sculpture'))
+    end
+  end
 end
