@@ -52,4 +52,15 @@ describe(Artwork) do
       expect(test_artwork.name()).to(eq('Sculpture'))
     end
   end
+
+  describe('#delete') do
+    it('deletes artwork from the database') do
+      test_artwork = Artwork.new({:name => 'Painting', :id => nil})
+      test_artwork.save()
+      test_artwork2 = Artwork.new({:name => 'Sculpture', :id => nil})
+      test_artwork2.save()
+      test_artwork2.delete()
+      expect(Artwork.all()).to(eq([test_artwork]))
+    end
+  end
 end
