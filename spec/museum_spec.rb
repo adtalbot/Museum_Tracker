@@ -52,4 +52,15 @@ describe(Museum) do
       expect(test_museum.name()).to(eq('Atlanta Museum'))
     end
   end
+
+  describe('#delete') do
+    it('deletes a museum from the database') do
+      test_museum = Museum.new({:name => 'Portland Museum', :id => nil})
+      test_museum.save()
+      test_museum2 = Museum.new({:name => 'Atlanta Museum', :id => nil})
+      test_museum2.save()
+      test_museum2.delete()
+      expect(Museum.all()).to(eq([test_museum]))
+    end
+  end
 end
