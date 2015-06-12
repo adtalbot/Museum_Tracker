@@ -11,4 +11,10 @@ describe(Artwork) do
       expect(test_artwork.id()).to(be_an_instance_of(Fixnum))
     end
   end
+
+  describe('.all') do
+    it('is empty at first') do
+      expect(Artwork.all()).to(eq([]))
+    end
+  end
 end
