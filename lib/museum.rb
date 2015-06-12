@@ -1,10 +1,8 @@
-require('spec_helper')
+class Museum
+  attr_reader(:name, :id)
 
-describe(Museum) do
-  describe('initialize') do
-    it('initializes an instance of museum with a name') do
-      test_museum = Museum.new({:name => 'Portland Museum', :id => nil})
-      expect(test_museum.name()).to(eq('Portland Museum'))
-    end
+  define_method(:initialize) do |attributes|
+    @name = attributes.fetch(:name)
+    @id = attributes.fetch(:id)
   end
 end
