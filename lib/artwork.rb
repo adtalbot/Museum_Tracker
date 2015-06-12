@@ -25,4 +25,10 @@ class Artwork
   define_method(:==) do |another_artwork|
     self.name().==(another_artwork.name()).&(self.id().==(another_artwork.id()))
   end
+
+  define_singleton_method(:find) do |id|
+    result = DB.exec("SELECT * FROM artworks WHERE id = #{id};")
+    name = result.first.fetch('name')
+    Artwork.new({:name => name, :id => id})
+  end
 end
