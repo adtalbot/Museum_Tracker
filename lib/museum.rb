@@ -25,4 +25,10 @@ class Museum
   define_method(:==) do |another_museum|
     self.name().==(another_museum.name()).&(self.id().==(another_museum.id()))
   end
+
+  define_singleton_method(:find) do |id|
+    result = DB.exec("SELECT * FROM museums WHERE id = #{id};")
+    name = result.first.fetch('name')
+    Museum.new({:name => name, :id => id})
+  end
 end
